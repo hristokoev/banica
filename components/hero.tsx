@@ -2,7 +2,7 @@ import Button from './button'
 
 export default function Hero() {
 	return (
-		<section className="relative h-screen">
+		<section className="relative">
 			{/* Bg gradient */}
 			<div
 				className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neutral-800 to-neutral-900 opacity-60 h-screen pointer-events-none -z-10"

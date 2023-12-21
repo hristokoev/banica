@@ -32,6 +32,9 @@ module.exports = {
         wider: '0.02em',
         widest: '0.4em',
       },
+			screens: {
+				'3xl': '1920px',
+			},
     },
   },
   plugins: [
