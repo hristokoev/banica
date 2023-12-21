@@ -1,7 +1,7 @@
 import './css/style.css'
 
 import { Inter, Merienda } from 'next/font/google'
-import localFont from 'next/font/local'
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -30,6 +30,7 @@ export default function RootLayout({
       <body className={`${inter.variable} ${merienda.variable} font-inter antialiased bg-neutral-900 text-gray-100 tracking-tight`}>
         <div className="flex flex-col min-h-screen overflow-hidden">
           {children}
+					<Analytics />
         </div>
       </body>
     </html>
