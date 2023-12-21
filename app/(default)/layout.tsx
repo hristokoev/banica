@@ -14,7 +14,7 @@ export default function DefaultLayout({
 			<main className="relative grow flex">
 
 				{/* Content */}
-				<div className="w-full bg-neutral-900/60 lg:bg-neutral-900 overflow-y-scroll no-scrollbar">
+				<div className="w-full overflow-y-scroll no-scrollbar">
 					<div className="w-full max-w-3xl mx-auto">
 						{children}
 					</div>

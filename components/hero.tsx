@@ -5,7 +5,7 @@ export default function Hero() {
 		<section className="relative">
 			{/* Bg gradient */}
 			<div
-				className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-neutral-800 to-neutral-900 opacity-60 h-screen pointer-events-none -z-10"
+				className="absolute bottom-0 left-0 right-0 opacity-60 h-screen pointer-events-none -z-10"
 				aria-hidden="true"
 			/>
 			<div className="relative max-w-6xl mx-auto px-4 sm:px-6">
@@ -13,7 +13,7 @@ export default function Hero() {
 					{/* Hero content */}
 					<div className="max-w-xl mx-auto md:max-w-[640px] md:mx-0 text-center md:text-left">
 						<div>
-							<div className="relative text-sm text-neutral-300 bg-neutral-800 rounded-full inline-block px-4 py-1 mb-6 before:content-[''] before:absolute before:-z-10 before:inset-0 before:-m-0.5 before:bg-gradient-to-t before:from-orange-400/75 before:to-neutral-800 before:via-orange-600/75 before:rounded-full">
+							<div className="relative text-sm text-neutral-300 bg-neutral-800 rounded-full inline-block px-4 py-1 mb-6 before:content-[''] before:absolute before:-z-10 before:inset-0 before:-m-0.5 before:bg-gradient-to-t before:from-orange-400/50 before:to-neutral-800 before:via-orange-600/50 before:rounded-full">
 								<div className="text-neutral-400">
 									Something delicious is coming.{' '}
 								</div>
