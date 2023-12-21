@@ -165,7 +165,7 @@ export default function Button() {
 						leaveFrom="opacity-100 scale-100"
 						leaveTo="opacity-0 scale-95"
 					>
-						<div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+						<div className="fixed inset-0 flex w-screen items-center justify-center p-4 z-50">
 							<Dialog.Panel className="w-full max-w-sm rounded-md bg-gradient-to-b from-neutral-950 to-neutral-900 border border-neutral-800">
 								<div className="p-8 space-y-4 text-center">
 									<Dialog.Title className="h4">{message.title}</Dialog.Title>
