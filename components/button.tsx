@@ -35,6 +35,11 @@ export default function Button() {
 		description: 'You appear to be outside of the Czech Republic or your location could not be determined. Please try again later.',
 	}
 
+	const messageErrorBrowser = {
+		title: 'Error! 😕',
+		description: 'Your browser appears to be blocking geolocation. Please try again later.',
+	}
+
 	// Get total votes and get geo data
 	useEffect(() => {
 		const docRef = doc(firestore, 'data', 'votes');
@@ -43,34 +48,43 @@ export default function Button() {
 				setCount(doc.data().total);
 			}
 		});
-	
+
 		// Resolve geo data and check if the user has already voted
 		const checkVoteAndResolveGeoData = async () => {
-			const geoData = await resolveGeoData();
-			setGeoData(geoData);
-	
-			const colRef = collection(firestore, 'votes');
-			const q = query(colRef, where('ip', '==', geoData.ip));
-			const querySnapshot = await getDocs(q);
-	
-			if (querySnapshot.empty) {
-				setMessage(messageDefault);
-			} else {
-				setMessage(messageAlreadyVoted);
-			}
+			try {
+				const geoDataResolved = await resolveGeoData();
+				setGeoData(geoDataResolved);
 
-			if (geoData.country !== 'Czechia') {
-				setMessage(messageErrorLocation);
+				const colRef = collection(firestore, 'votes');
+				const q = query(colRef, where('ip', '==', geoDataResolved.ip));
+				const querySnapshot = await getDocs(q);
+
+				if (querySnapshot.empty) {
+					setMessage(messageDefault);
+				} else {
+					setMessage(messageAlreadyVoted);
+				}
+
+				if (geoDataResolved.country !== 'Czechia') {
+					setMessage(messageErrorLocation);
+				}
+			} catch (error) {
+				setMessage(messageErrorBrowser);
+				setGeoData({
+					ip: '',
+					country: '',
+					geo: new GeoPoint(0, 0),
+				});
 			}
 		};
-	
+
 		checkVoteAndResolveGeoData();
-	
+
 		return () => unsubscribe();
 	}, []);
-	
+
 	const resolveGeoData = async () => {
-		const res = await fetch('https://geolocation-db.com/json/');
+		const res = await fetch('https://geolocation-db.com/json2/');
 		const data = await res.json();
 		return {
 			ip: data.IPv4,
@@ -78,16 +92,17 @@ export default function Button() {
 			geo: new GeoPoint(data.latitude, data.longitude),
 		};
 	};
-	
+
 	const addVote = async () => {
 		if (!geoData.ip || geoData.country !== 'Czechia') {
+			await addOneToFailedVotes();
 			return;
 		}
-	
+
 		const colRef = collection(firestore, 'votes');
 		const q = query(colRef, where('ip', '==', geoData.ip));
 		const querySnapshot = await getDocs(q);
-	
+
 		if (querySnapshot.empty) {
 			await addDoc(colRef, geoData);
 			await addOneToVotes();
@@ -104,6 +119,15 @@ export default function Button() {
 
 	const addOneToVotes = async () => {
 		const docRef = doc(firestore, 'data', 'votes')
+		await runTransaction(firestore, async (transaction) => {
+			const docSnap = await transaction.get(docRef)
+			const newCount = (docSnap.data()?.total || 0) + 1
+			transaction.update(docRef, { total: newCount })
+		})
+	}
+
+	const addOneToFailedVotes = async () => {
+		const docRef = doc(firestore, 'data', 'failed')
 		await runTransaction(firestore, async (transaction) => {
 			const docSnap = await transaction.get(docRef)
 			const newCount = (docSnap.data()?.total || 0) + 1
