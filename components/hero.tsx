@@ -43,7 +43,7 @@ export default function Hero() {
 							</div>
 						</div>
 						<p className="text-lg text-neutral-300 lg:text-neutral-400 mt-10">
-							As of now, this is only an idea. If you're intested, please click on the button above or let me know by contacting me.
+							As of now, this is only an idea. If you're interested, please click on the button above or let me know by contacting me.
 						</p>
 						<p className="text-xs text-neutral-400 lg:text-neutral-500 mt-5">
 							*Voting is anonymous and takes into account your IP address and location, accessible via <a href="https://geolocation-db.com/json/" className="text-orange-400/50 underline" target="_blank">geolocation-db.com</a>. By voting, you agree to your IP address and location being stored in a database. I will not use it for any purpose other than vote counting and analytics.
