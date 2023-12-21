@@ -25,7 +25,7 @@ export default function Hero() {
 						<p className="text-lg text-neutral-300 lg:text-neutral-400 mb-5">
 							Hello 👋,<br />
 							My name is Hristo and I come from a small village in Bulgaria.
-							Throughout my life I have been surrounded by the most delicious food. Biased? Maybe. But I wanted to share some of that with you.
+							Throughout my life I have been surrounded by the most delicious food. Biased? Maybe. But I'm excited to bring a slice of that culinary magic to you.
 						</p>
 						<p className="text-lg text-neutral-300 lg:text-neutral-400 mb-10">
 							The <em className="font-italic text-orange-400">banica/banitsa (баница)</em> is a delicious pastry made with filo dough and feta cheese. It is a staple in every Bulgarian household and I am proud to share our family recipe with you.
@@ -43,7 +43,7 @@ export default function Hero() {
 							</div>
 						</div>
 						<p className="text-lg text-neutral-300 lg:text-neutral-400 mt-10">
-							For now, this is only an idea. If you have any interest in this, please click on the button above or let me know by contacting me.
+							As of now, this is only an idea. If you're intested, please click on the button above or let me know by contacting me.
 						</p>
 						<p className="text-xs text-neutral-400 lg:text-neutral-500 mt-5">
 							*Voting is anonymous and takes into account your IP address and location, accessible via <a href="https://geolocation-db.com/json/" className="text-orange-400/50 underline" target="_blank">geolocation-db.com</a>. By voting, you agree to your IP address and location being stored in a database. I will not use it for any purpose other than vote counting and analytics.
